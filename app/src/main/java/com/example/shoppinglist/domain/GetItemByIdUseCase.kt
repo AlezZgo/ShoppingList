@@ -1,7 +1,7 @@
 package com.example.shoppinglist.domain
 
-class GetItemByIdUseCase {
+class GetItemByIdUseCase(private val shopListRepository: ShopListRepository) {
     fun get(id : Int) : ShopItem{
-        TODO()
+        return shopListRepository.getItem(id = id)
     }
 }
