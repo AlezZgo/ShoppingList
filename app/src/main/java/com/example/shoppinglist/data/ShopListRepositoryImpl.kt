@@ -9,6 +9,14 @@ object ShopListRepositoryImpl : ShopListRepository {
 
     private var autoIncrement = 0
 
+    init {
+        for (i in 0 .. 10){
+            val item = ShopItem("name $i", i ,  true)
+            addItem(item)
+        }
+
+    }
+
     override fun addItem(shopItem: ShopItem) {
         if(shopItem.id == ShopItem.UNDEFINED_ID){
             autoIncrement++
@@ -16,10 +24,10 @@ object ShopListRepositoryImpl : ShopListRepository {
         shopList.add(shopItem)
     }
 
-    override fun editItem(shopItem: ShopItem) {
-        val oldItem = getItem(shopItem.id)
+    override fun editItem(newItem: ShopItem) {
+        val oldItem = getItem(newItem.id)
         shopList.remove(oldItem)
-        addItem(shopItem)
+        addItem(newItem)
     }
 
     override fun getItem(id: Int): ShopItem {
