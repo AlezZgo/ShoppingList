@@ -24,6 +24,7 @@
             android:layout_weight="3"
             android:fontFamily="@font/abril_fatface"
             android:text="@string/list_element"
+            android:textAlignment="center"
             android:textSize="20sp" />
 
         <TextView
@@ -33,6 +34,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/abril_fatface"
             android:text="@string/count"
+            android:textAlignment="center"
             android:textSize="20sp" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
