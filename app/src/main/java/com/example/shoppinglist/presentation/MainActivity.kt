@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         viewModel.shopList.observe(this){
-            Log.d("MainActivity",it.toString())
+            Log.d("MainActivity",it[1].name)
         }
     }
 }
