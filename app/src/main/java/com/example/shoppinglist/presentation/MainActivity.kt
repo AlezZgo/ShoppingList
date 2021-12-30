@@ -1,6 +1,7 @@
 package com.example.shoppinglist.presentation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
@@ -38,6 +39,10 @@ class MainActivity : AppCompatActivity() {
 
         shopListAdapter.onShopItemLongClickListener = {
             viewModel.changeState(it)
+        }
+
+        shopListAdapter.onShopItemClickListener = {
+            Log.d("Click",it.name)
         }
 
     }
