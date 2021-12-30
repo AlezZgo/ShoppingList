@@ -13,9 +13,9 @@ import java.lang.RuntimeException
 class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>() {
 
     companion object{
-        enum class EnabledType(val code: Int) {
-            ENABLED(0),
-            DISABLED(1)
+        enum class ShopItemViewType(val code: Int) {
+            ENABLED_VIEW(0),
+            DISABLED_VIEW(1)
         }
 
         const val MAX_ENABLED_POOL = 30
@@ -30,13 +30,10 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopItemViewHolder {
-
-        Log.i("created", "$viewType created")
-
         return ShopItemViewHolder(
             when(viewType){
-                EnabledType.ENABLED.code -> LayoutInflater.from(parent.context).inflate(R.layout.item_shop_enabled,parent,false)
-                EnabledType.DISABLED.code -> LayoutInflater.from(parent.context).inflate(R.layout.item_shop_disabled,parent,false)
+                ShopItemViewType.ENABLED_VIEW.code -> LayoutInflater.from(parent.context).inflate(R.layout.item_shop_enabled,parent,false)
+                ShopItemViewType.DISABLED_VIEW.code -> LayoutInflater.from(parent.context).inflate(R.layout.item_shop_disabled,parent,false)
                 else -> throw RuntimeException("Unknown type of viewType")
             }
         )
@@ -56,9 +53,9 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
         val elem = shopList[position]
 
         val type = if (elem.enabled) {
-            EnabledType.ENABLED
+            ShopItemViewType.ENABLED_VIEW
         } else {
-            EnabledType.DISABLED
+            ShopItemViewType.DISABLED_VIEW
         }
 
         return type.code
