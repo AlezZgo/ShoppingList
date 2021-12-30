@@ -1,6 +1,5 @@
 package com.example.shoppinglist.presentation
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppinglist.R
 import com.example.shoppinglist.domain.ShopItem
-import java.lang.RuntimeException
 
 class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>() {
 
@@ -22,12 +20,13 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
         const val MAX_DISABLED_POOL = 30
     }
 
-
     var shopList = listOf<ShopItem>()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
+
+    var onShopItemLongClickListener : ((ShopItem) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopItemViewHolder {
         return ShopItemViewHolder(
@@ -45,6 +44,7 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
         holder.count.text = elem.count.toString()
 
         holder.view.setOnLongClickListener {
+            onShopItemLongClickListener?.invoke(elem)
             true
         }
     }
