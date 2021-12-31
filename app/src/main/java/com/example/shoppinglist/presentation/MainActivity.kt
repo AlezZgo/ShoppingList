@@ -15,12 +15,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_shop_item)
-        //setupRecyclerView()
-        //viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-//        viewModel.shopList.observe(this) {
-//            shopListAdapter.submitList(it)
-//        }
+        setContentView(R.layout.activity_main)
+        setupRecyclerView()
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        viewModel.shopList.observe(this) {
+            shopListAdapter.submitList(it)
+        }
     }
 
     private fun setupRecyclerView() {
