@@ -41,7 +41,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button_add"
+        android:id="@+id/button_save"
         android:layout_width="357dp"
         android:layout_height="51dp"
         android:fontFamily="@font/abril_fatface"
