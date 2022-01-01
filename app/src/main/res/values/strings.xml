@@ -3,4 +3,6 @@
     <string name="add_new_item">Add new Item</string>
     <string name="list_element">list element</string>
     <string name="count">count</string>
+    <string name="error_input_count">Incorrect input values</string>
+    <string name="error_input_name">incorrect input name</string>
 </resources>
