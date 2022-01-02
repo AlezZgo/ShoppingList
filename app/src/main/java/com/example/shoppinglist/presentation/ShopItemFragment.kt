@@ -20,8 +20,9 @@ import java.lang.RuntimeException
 
 class ShopItemFragment: Fragment() {
 
-    private lateinit var viewModel: ShopItemViewModel
+    private var onEditingFinishedListener : OnEditingFinishedListener? = null
 
+    private lateinit var viewModel: ShopItemViewModel
     private lateinit var tilName: TextInputLayout
     private lateinit var tilCount: TextInputLayout
     private lateinit var etName: EditText
@@ -42,6 +43,13 @@ class ShopItemFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_shop_item,container,false)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if(context is OnEditingFinishedListener){
+            onEditingFinishedListener = context
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -78,7 +86,7 @@ class ShopItemFragment: Fragment() {
 
     private fun launchRightMode(){
 
-        val fragment = when (screenMode) {
+        when (screenMode) {
             MODE_EDIT -> launchEditMode()
             MODE_ADD -> launchAddMode()
             else -> throw java.lang.RuntimeException("Unknown mode $screenMode")
@@ -160,6 +168,10 @@ class ShopItemFragment: Fragment() {
         etCount = view.findViewById(R.id.et_count)
         btnSave = view.findViewById(R.id.button_save)
 
+    }
+
+    interface OnEditingFinishedListener{
+        fun onEdittingFinished()
     }
 
     companion object {
